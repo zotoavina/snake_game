@@ -52,23 +52,40 @@ public class Part {
     }
 
     /**
+     * Show the next location after moving according to the direction and bound
+     *
+     * @param direction
+     * @param bound
+     * @return
+     */
+    public Point locationAfterMove(Direction direction, int bound) {
+        if (Objects.isNull(direction)) return new Point(position.x, position.y);
+
+        int x = position.x;
+        ;
+        int y = position.y;
+
+        bound *= direction.getCoefficient();
+
+        if (direction.equals(UP) || direction.equals(DOWN)) {
+            y += bound;
+        }
+
+        if (direction.equals(LEFT) || direction.equals(RIGHT)) {
+            x += bound;
+        }
+        return new Point(x, y);
+    }
+
+    /**
      * Method for moving a part
      *
      * @param direction the direction of the move
      * @param bound
      */
     public void move(Direction direction, int bound) {
-        if (Objects.isNull(direction)) return;
-
-        bound *= direction.getCoefficient();
-
-        if (direction.equals(UP) || direction.equals(DOWN)) {
-            position.setLocation(position.x, position.y + bound);
-        }
-
-        if (direction.equals(LEFT) || direction.equals(RIGHT)) {
-            position.setLocation(position.x + bound, position.y);
-        }
+        Point newLocation = locationAfterMove(direction, bound);
+        position.setLocation(newLocation.x, newLocation.y);
     }
 
     /**
@@ -97,6 +114,8 @@ public class Part {
      * @return
      */
     public void swap(Part part) {
+        if (Objects.isNull(part)) return;
+
         int xTemp = part.getX();
         int yTemp = part.getY();
 
@@ -104,5 +123,13 @@ public class Part {
         part.getPosition().y = getY();
 
         position.move(xTemp, yTemp);
+    }
+
+    public boolean checkLocation(int x, int y) {
+        return x == getX() && y == getY();
+    }
+
+    public boolean checkShape(Shape shape) {
+        return this.shape.equals(shape);
     }
 }

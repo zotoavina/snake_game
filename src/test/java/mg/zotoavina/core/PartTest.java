@@ -128,8 +128,28 @@ class PartTest {
 
         // assert
         assertEquals(15, part1.getX());
-        assertEquals(5 , part3.getX());
+        assertEquals(5, part3.getX());
         assertEquals(20, part1.getY());
         assertEquals(5, part3.getY());
+    }
+
+    @Test
+    void checkLocation() {
+        // arrange
+        Part part1 = Part.buildPart(Color.WHITE, Shape.ROUND, new Point(5, 5));
+
+        // act and assert
+        assertTrue(part1.checkLocation(5, 5));
+        assertFalse(part1.checkLocation(6, 10));
+    }
+
+    @Test
+    void checkShape() {
+        // arrange
+        Part part1 = Part.buildPart(Color.WHITE, Shape.ROUND, new Point(5, 5));
+
+        // act and assert
+        assertEquals(Shape.ROUND, part1.getShape());
+        assertNotEquals(Shape.RECT, part1.getShape());
     }
 }
