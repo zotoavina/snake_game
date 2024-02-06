@@ -1,14 +1,31 @@
 package mg.zotoavina.core;
 
-public enum Direction {
-    UP(-1), DOWN(1), LEFT(-1), RIGHT(1);
-    private final int coefficient;
+import static mg.zotoavina.core.Support.HORIZONTAL;
+import static mg.zotoavina.core.Support.VERTICAL;
 
-    Direction(int coefficient) {
+public enum Direction {
+    UP(-1, VERTICAL),
+    DOWN(1, VERTICAL),
+    LEFT(-1, HORIZONTAL),
+    RIGHT(1, HORIZONTAL);
+    private final int coefficient;
+    private final Support support;
+
+    private Direction(int coefficient, Support support) {
         this.coefficient = coefficient;
+        this.support = support;
     }
 
     public int getCoefficient() {
         return coefficient;
     }
+
+    public boolean opposed(Direction direction) {
+        return support.equals(direction.support)
+                && (coefficient + direction.getCoefficient() == 0);
+    }
+}
+
+enum Support {
+    VERTICAL, HORIZONTAL
 }
