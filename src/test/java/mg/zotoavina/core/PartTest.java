@@ -63,7 +63,7 @@ class PartTest {
     }
 
     @Test
-    void moveLeft(){
+    void moveLeft() {
         // arrange
         Part part = Part.buildPart(Color.WHITE, Shape.ROUND, new Point(5, 5));
 
@@ -76,7 +76,7 @@ class PartTest {
     }
 
     @Test
-    void moveRight(){
+    void moveRight() {
         // arrange
         Part part = Part.buildPart(Color.WHITE, Shape.ROUND, new Point(5, 5));
 
@@ -88,5 +88,19 @@ class PartTest {
         assertEquals(5, part.getY());
     }
 
+
+    @Test
+    void moveAccordingToPreviousPart() {
+        // arrange
+        Part part1 = Part.buildPart(Color.WHITE, Shape.ROUND, new Point(5, 5));
+        Part part2 = Part.buildPart(Color.WHITE, Shape.ROUND, new Point(5, 6));
+
+        // act
+        part2.moveAccordingToPreviousPart(part1);
+
+        // assert
+        assertEquals(5, part2.getX());
+        assertEquals(5, part2.getY());
+    }
 
 }

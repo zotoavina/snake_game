@@ -63,4 +63,10 @@ public class Part {
             position.setLocation(position.x + bound, position.y);
         }
     }
+
+    public void moveAccordingToPreviousPart(Part part) {
+        position.setLocation(part.getX(), part.getY());
+    }
+
+
 }
