@@ -73,14 +73,36 @@ public class Part {
 
     /**
      * this method is used for a part to take the position of it's previous
+     *
      * @param part
      */
     public void moveAccordingToPreviousPart(Part part) {
         position.setLocation(part.getX(), part.getY());
     }
 
-    public boolean isInCollision(Part part){
+    /**
+     * Check other the head is in collision with other part
+     *
+     * @param part
+     * @return
+     */
+    public boolean isInCollision(Part part) {
         return getY() == part.getY() && getX() == part.getX();
     }
 
+    /**
+     * swap two parts
+     *
+     * @param part
+     * @return
+     */
+    public void swap(Part part) {
+        int xTemp = part.getX();
+        int yTemp = part.getY();
+
+        part.getPosition().x = getX();
+        part.getPosition().y = getY();
+
+        position.move(xTemp, yTemp);
+    }
 }
