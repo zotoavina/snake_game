@@ -3,6 +3,8 @@ package mg.zotoavina.core;
 import java.awt.*;
 import java.util.Objects;
 
+import static mg.zotoavina.core.Direction.*;
+
 public class Part {
     private final Color color;
     private final Shape shape;
@@ -38,5 +40,27 @@ public class Part {
 
     public Point getPosition() {
         return position;
+    }
+
+    public int getX() {
+        return position.x;
+    }
+
+    public int getY() {
+        return position.y;
+    }
+
+    public void move(Direction direction, int bound) {
+        if (Objects.isNull(direction)) return;
+
+        bound *= direction.getCoefficient();
+
+        if (direction.equals(UP) || direction.equals(DOWN)) {
+            position.setLocation(position.x, position.y + bound);
+        }
+
+        if (direction.equals(LEFT) || direction.equals(RIGHT)) {
+            position.setLocation(position.x + bound, position.y);
+        }
     }
 }
