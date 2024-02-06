@@ -16,20 +16,6 @@ public class Part {
         this.position = position;
     }
 
-    /**
-     * Factory method for creation a snake part
-     *
-     * @param color
-     * @param shape
-     * @return
-     */
-    public static Part buildPart(Color color, Shape shape, Point position) {
-        Objects.requireNonNull(color, "The part color should not be null for a snake part");
-        Objects.requireNonNull(shape, "The shape should not be null for a snake part");
-        Objects.requireNonNull(position, "the position for the snake part should not be null");
-        return new Part(color, shape, position);
-    }
-
     public Color getColor() {
         return color;
     }
@@ -50,6 +36,27 @@ public class Part {
         return position.y;
     }
 
+
+    /**
+     * Factory method for creation a snake part
+     *
+     * @param color
+     * @param shape
+     * @return
+     */
+    public static Part buildPart(Color color, Shape shape, Point position) {
+        Objects.requireNonNull(color, "The part color should not be null for a snake part");
+        Objects.requireNonNull(shape, "The shape should not be null for a snake part");
+        Objects.requireNonNull(position, "the position for the snake part should not be null");
+        return new Part(color, shape, position);
+    }
+
+    /**
+     * Method for moving a part
+     *
+     * @param direction the direction of the move
+     * @param bound
+     */
     public void move(Direction direction, int bound) {
         if (Objects.isNull(direction)) return;
 
@@ -64,9 +71,16 @@ public class Part {
         }
     }
 
+    /**
+     * this method is used for a part to take the position of it's previous
+     * @param part
+     */
     public void moveAccordingToPreviousPart(Part part) {
         position.setLocation(part.getX(), part.getY());
     }
 
+    public boolean isInCollision(Part part){
+        return getY() == part.getY() && getX() == part.getX();
+    }
 
 }

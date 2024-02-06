@@ -103,4 +103,17 @@ class PartTest {
         assertEquals(5, part2.getY());
     }
 
+
+    @Test
+    void testCollisionBetweenPart(){
+        // arrange
+        Part part1 = Part.buildPart(Color.WHITE, Shape.ROUND, new Point(5, 5));
+        Part part2 = Part.buildPart(Color.WHITE, Shape.ROUND, new Point(5, 5));
+        Part part3 = Part.buildPart(Color.WHITE, Shape.ROUND, new Point(15, 5));
+
+
+        // act and assert
+        assertTrue(part1.isInCollision(part2));
+        assertFalse(part3.isInCollision(part1));
+    }
 }
