@@ -1,5 +1,5 @@
 package mg.zotoavina.core;
 
-public enum Form {
+public enum Shape {
     ROUND, RECT
 }
