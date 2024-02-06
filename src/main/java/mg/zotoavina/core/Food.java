@@ -22,6 +22,14 @@ public class Food {
         return position;
     }
 
+    public int getX() {
+        return position.x;
+    }
+
+    public int getY() {
+        return position.y;
+    }
+
     public Color getColor() {
         return color;
     }
