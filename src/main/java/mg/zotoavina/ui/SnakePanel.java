@@ -11,9 +11,8 @@ import java.awt.*;
 import java.util.LinkedList;
 import java.util.Objects;
 
-import static mg.zotoavina.config.FrameConfig.FRAME_HEIGHT;
-import static mg.zotoavina.config.FrameConfig.SNAKE_PANEL_WIDTH;
-import static mg.zotoavina.config.GameConfig.*;
+import static mg.zotoavina.config.FrameConfig.*;
+import static mg.zotoavina.config.GameConfig.PART_SIZE;
 
 public class SnakePanel extends JPanel {
     private final SnakeFrame frame;
@@ -29,6 +28,9 @@ public class SnakePanel extends JPanel {
     @Override
     public void paint(Graphics graphics) {
         clear(graphics);
+        if(frame.isGameOver()) {
+            drawGameOver(graphics);
+        }
         graphics.setColor(Color.black);
         drawSnake(frame.getSnake(), graphics);
         drawFood(frame.getFood(), graphics);
@@ -36,7 +38,7 @@ public class SnakePanel extends JPanel {
 
     public static void clear(Graphics graphics) {
         graphics.setColor(Color.LIGHT_GRAY);
-        graphics.fillRect(0, 0, FrameConfig.FRAME_WIDTH, FrameConfig.FRAME_HEIGHT);
+        graphics.fillRect(0, 0, SNAKE_PANEL_WIDTH, FrameConfig.FRAME_HEIGHT);
     }
 
     private static void drawSnackPart(Part part, Graphics graphics) {
@@ -48,7 +50,7 @@ public class SnakePanel extends JPanel {
     }
 
     private static void drawHead(Part part, Graphics graphics) {
-        if(Objects.isNull(part)) return;
+        if (Objects.isNull(part)) return;
         graphics.drawRoundRect(part.getX(), part.getY(), PART_SIZE, PART_SIZE, 4, 4);
         int x = part.getX() + (PART_SIZE / 2);
         int y = part.getY() + (PART_SIZE / 2);
@@ -66,6 +68,20 @@ public class SnakePanel extends JPanel {
     private static void drawFood(Food food, Graphics graphics) {
         graphics.setColor(food.getColor());
         graphics.fillRect(food.getX(), food.getY(), PART_SIZE, PART_SIZE);
+    }
+
+    private static void drawGameOver(Graphics graphics) {
+        graphics.setColor(Color.RED);
+        Font font = new Font("Arial Bold", Font.ITALIC, 30);
+        graphics.setFont(font);
+        graphics.drawString("Game Over !!!!",
+                SNAKE_PANEL_WIDTH / 2 - 100,
+                FRAME_HEIGHT / 2);
+        graphics.setFont(new Font("Arial Bold", Font.ITALIC, 10));
+        graphics.setColor(Color.BLACK);
+        graphics.drawString("Press N for new game",
+                SNAKE_PANEL_WIDTH / 2 - 60 ,
+                FRAME_HEIGHT / 2 + 10);
     }
 
 

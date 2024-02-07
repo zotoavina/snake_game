@@ -79,8 +79,8 @@ public class SnakeFrame extends JFrame {
                 , FRAME_HEIGHT - SNAKE_PANEL_MARGIN, GameConfig.PART_SIZE);
     }
 
-    public void gameOver() {
-        gameOver.set(true);
+    public boolean isGameOver() {
+        return  gameOver.get();
     }
 
     public void checkGame() {
