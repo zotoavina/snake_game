@@ -110,11 +110,11 @@ public class Snake {
 
     /**
      * used to check if the snake's head position is out of accepted range
-     * @param minX
-     * @param minY
-     * @param maxX
-     * @param maxY
-     * @return
+     * @param minX min range for x
+     * @param minY min range for y
+     * @param maxX max range for x
+     * @param maxY max range for y
+     * @return boolean
      */
     public boolean isOutOfRange(int minX, int minY, int maxX, int maxY) {
         Part head = body.get(0);
