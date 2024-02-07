@@ -12,6 +12,7 @@ import java.util.LinkedList;
 
 import static mg.zotoavina.config.FrameConfig.FRAME_HEIGHT;
 import static mg.zotoavina.config.FrameConfig.SNAKE_PANEL_WIDTH;
+import static mg.zotoavina.config.GameConfig.*;
 
 public class SnakePanel extends JPanel {
     private final SnakeFrame frame;
@@ -40,13 +41,13 @@ public class SnakePanel extends JPanel {
     private static void drawSnackPart(Part part, Graphics graphics) {
         graphics.setColor(part.getColor());
         if (part.checkShape(Shape.RECT))
-            graphics.fillRect(part.getX(), part.getY(), 10, 10);
+            graphics.fillRect(part.getX(), part.getY(), PART_SIZE, PART_SIZE);
         else
-            graphics.drawRoundRect(part.getX(), part.getY(), 10, 10, 4, 4);
+            graphics.drawRoundRect(part.getX(), part.getY(), PART_SIZE, PART_SIZE, 4, 4);
     }
 
     private static void drawHead(Part part, Graphics graphics, int bound) {
-        graphics.drawRoundRect(part.getX(), part.getY(), 10, 10, 4, 4);
+        graphics.drawRoundRect(part.getX(), part.getY(), PART_SIZE, PART_SIZE, 4, 4);
         int x = part.getX() + (bound / 2);
         int y = part.getY() + (bound / 2);
         graphics.setColor(Color.RED);
@@ -56,13 +57,13 @@ public class SnakePanel extends JPanel {
     private static void drawSnake(Snake snake, Graphics graphics) {
         LinkedList<Part> parts = snake.getSnakeCorpse();
         Part head = parts.poll();
-        drawHead(head, graphics, 10);
+        drawHead(head, graphics, PART_SIZE);
         parts.forEach(p -> drawSnackPart(p, graphics));
     }
 
     private static void drawFood(Food food, Graphics graphics) {
         graphics.setColor(food.getColor());
-        graphics.fillRect(food.getX(), food.getY(), 10, 10);
+        graphics.fillRect(food.getX(), food.getY(), PART_SIZE, PART_SIZE);
     }
 
 
