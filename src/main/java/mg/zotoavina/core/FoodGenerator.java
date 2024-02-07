@@ -10,8 +10,9 @@ public final class FoodGenerator {
     private static final Random random;
 
     static {
-        colors = List.of(Color.BLACK, Color.GRAY,
-                Color.LIGHT_GRAY, Color.BLUE, Color.red, Color.orange, Color.CYAN);
+        colors = List.of(Color.BLACK, Color.MAGENTA, Color.GREEN, Color.YELLOW,
+                Color.PINK, Color.DARK_GRAY,
+                Color.BLUE, Color.red, Color.orange, Color.CYAN);
         random = new Random();
     }
 

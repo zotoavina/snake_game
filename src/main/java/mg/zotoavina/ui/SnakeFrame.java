@@ -1,5 +1,6 @@
 package mg.zotoavina.ui;
 
+import mg.zotoavina.config.GameConfig;
 import mg.zotoavina.core.Food;
 import mg.zotoavina.core.FoodGenerator;
 import mg.zotoavina.core.Snake;
@@ -14,6 +15,7 @@ import static mg.zotoavina.config.FrameConfig.*;
 public class SnakeFrame extends JFrame {
 
     private final SnakePanel snakePanel;
+    private final InfoPanel infoPanel;
 
     private final transient Snake snake;
 
@@ -26,17 +28,18 @@ public class SnakeFrame extends JFrame {
         super();
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setSize(FRAME_WIDTH, FRAME_HEIGHT);
-        setResizable(true);
+        setResizable(false);
         setTitle(FRAME_TITLE);
         setLayout(null);
 
         this.food = FoodGenerator.generateFood(0, 0, SNAKE_PANEL_WIDTH - SNAKE_PANEL_MARGIN
-                , FRAME_HEIGHT - SNAKE_PANEL_MARGIN, 10);
+                , FRAME_HEIGHT - SNAKE_PANEL_MARGIN, GameConfig.PART_SIZE);
 
         this.snake = Snake.createSnake(100, 100, Color.BLACK);
 
         this.snakePanel = new SnakePanel(this);
-        snakePanel.setBounds(0, 0, SNAKE_PANEL_WIDTH, FRAME_HEIGHT);
+
+        this.infoPanel = new InfoPanel(this);
 
         new SnakeGameListener(this);
 
@@ -49,6 +52,10 @@ public class SnakeFrame extends JFrame {
 
     public SnakePanel getSnakePanel() {
         return snakePanel;
+    }
+
+    public InfoPanel getInfoPanel() {
+        return infoPanel;
     }
 
     public Snake getSnake() {
@@ -69,7 +76,7 @@ public class SnakeFrame extends JFrame {
 
     public void addFood() {
         this.food = FoodGenerator.generateFood(0, 0, SNAKE_PANEL_WIDTH - SNAKE_PANEL_MARGIN
-                , FRAME_HEIGHT - SNAKE_PANEL_MARGIN, 10);
+                , FRAME_HEIGHT - SNAKE_PANEL_MARGIN, GameConfig.PART_SIZE);
     }
 
     public void gameOver() {

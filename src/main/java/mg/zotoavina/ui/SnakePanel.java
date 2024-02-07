@@ -10,6 +10,9 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.LinkedList;
 
+import static mg.zotoavina.config.FrameConfig.FRAME_HEIGHT;
+import static mg.zotoavina.config.FrameConfig.SNAKE_PANEL_WIDTH;
+
 public class SnakePanel extends JPanel {
     private final SnakeFrame frame;
 
@@ -17,9 +20,11 @@ public class SnakePanel extends JPanel {
     public SnakePanel(SnakeFrame frame) {
         super();
         this.frame = frame;
-        frame.setContentPane(this);
+        setBounds(0, 0, SNAKE_PANEL_WIDTH, FRAME_HEIGHT);
+        frame.add(this);
     }
 
+    @Override
     public void paint(Graphics graphics) {
         clear(graphics);
         graphics.setColor(Color.black);
@@ -28,7 +33,7 @@ public class SnakePanel extends JPanel {
     }
 
     public static void clear(Graphics graphics) {
-        graphics.setColor(Color.WHITE);
+        graphics.setColor(Color.LIGHT_GRAY);
         graphics.fillRect(0, 0, FrameConfig.FRAME_WIDTH, FrameConfig.FRAME_HEIGHT);
     }
 
@@ -48,15 +53,17 @@ public class SnakePanel extends JPanel {
         graphics.fillRect(x, y, 2, 2);
     }
 
-    public static void drawSnake(Snake snake, Graphics graphics) {
+    private static void drawSnake(Snake snake, Graphics graphics) {
         LinkedList<Part> parts = snake.getSnakeCorpse();
         Part head = parts.poll();
         drawHead(head, graphics, 10);
         parts.forEach(p -> drawSnackPart(p, graphics));
     }
 
-    public static void drawFood(Food food, Graphics graphics) {
+    private static void drawFood(Food food, Graphics graphics) {
         graphics.setColor(food.getColor());
         graphics.fillRect(food.getX(), food.getY(), 10, 10);
     }
+
+
 }
