@@ -112,7 +112,7 @@ public class Snake {
         Part head = body.get(0);
         int xHead = head.getX();
         int yHead = head.getY();
-        return xHead < minX || xHead > maxX || yHead < minX || yHead > maxY;
+        return xHead < minX || xHead > maxX || yHead < minY || yHead > maxY;
     }
 
 }
