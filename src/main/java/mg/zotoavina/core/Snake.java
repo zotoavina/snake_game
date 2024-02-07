@@ -33,7 +33,7 @@ public class Snake {
     /**
      * get the size of the snake
      *
-     * @return
+     * @return int
      */
     public int getSize() {
         return body.size();
@@ -47,7 +47,7 @@ public class Snake {
     /**
      * method for moving the snake
      *
-     * @param bound
+     * @param bound the bound for the move
      */
     public void move(int bound) {
         Part head = body.get(0);
@@ -57,16 +57,13 @@ public class Snake {
         head.move(currentDirection, bound);
     }
 
+
     /**
      * method for eating food and convert it to snake's part
      *
-     * @param food
+     * @param food the food to be eaten by the snake
+     * @return boolean
      */
-    public void eatFood(Food food) {
-        if (Objects.isNull(food)) return;
-        addAsPart(food.convertToPart());
-    }
-
     public boolean eatFood(Food food, int bound) {
         Part head = body.get(0);
         Point nextLocation = head.locationAfterMove(currentDirection, bound);
@@ -85,7 +82,7 @@ public class Snake {
     /**
      * change the direction of the snake
      *
-     * @param direction
+     * @param direction the new direction to take
      */
     public void changeDirection(Direction direction) {
         if (Objects.isNull(currentDirection)) {
@@ -102,7 +99,7 @@ public class Snake {
     /**
      * Check whether the head of the snake is in collision with its body
      *
-     * @return
+     * @return boolean
      */
     public boolean isInCollision() {
         Part head = body.get(0);

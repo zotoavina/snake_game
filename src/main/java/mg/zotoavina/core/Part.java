@@ -62,7 +62,6 @@ public class Part {
         if (Objects.isNull(direction)) return new Point(position.x, position.y);
 
         int x = position.x;
-        ;
         int y = position.y;
 
         bound *= direction.getCoefficient();
