@@ -141,4 +141,6 @@ public class Part {
     public boolean checkShape(Shape shape) {
         return this.shape.equals(shape);
     }
+
+
 }

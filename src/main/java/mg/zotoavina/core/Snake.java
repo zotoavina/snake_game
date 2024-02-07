@@ -108,4 +108,11 @@ public class Snake {
                 .anyMatch(part -> part.checkLocation(head.getX(), head.getY()));
     }
 
+    public boolean isOutOfRange(int minX, int minY, int maxX, int maxY) {
+        Part head = body.get(0);
+        int xHead = head.getX();
+        int yHead = head.getY();
+        return xHead < minX || xHead > maxX || yHead < minX || yHead > maxY;
+    }
+
 }

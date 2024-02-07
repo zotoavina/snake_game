@@ -84,7 +84,10 @@ public class SnakeFrame extends JFrame {
     }
 
     public void checkGame() {
-        gameOver.set(snake.isInCollision());
+        gameOver.set(
+                snake.isInCollision() ||
+                        snake.isOutOfRange(0, 0, SNAKE_PANEL_WIDTH, FRAME_HEIGHT - SNAKE_PANEL_MARGIN)
+        );
     }
 
     public boolean stopGame() {
