@@ -11,7 +11,7 @@ public enum Direction {
     private final int coefficient;
     private final Support support;
 
-    private Direction(int coefficient, Support support) {
+    Direction(int coefficient, Support support) {
         this.coefficient = coefficient;
         this.support = support;
     }
