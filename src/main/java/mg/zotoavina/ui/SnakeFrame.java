@@ -24,6 +24,9 @@ public class SnakeFrame extends JFrame {
 
     private final AtomicBoolean gameOver = new AtomicBoolean(false);
 
+    private transient SnakeMotionThread motionThread;
+
+
     public SnakeFrame() {
         super();
         setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -35,7 +38,7 @@ public class SnakeFrame extends JFrame {
         this.food = FoodGenerator.generateFood(0, 0, SNAKE_PANEL_WIDTH - SNAKE_PANEL_MARGIN
                 , FRAME_HEIGHT - SNAKE_PANEL_MARGIN, GameConfig.PART_SIZE);
 
-        this.snake = Snake.createSnake(100, 100, Color.BLACK);
+        this.snake = Snake.createSnake(0, 0, Color.BLACK);
 
         this.snakePanel = new SnakePanel(this);
 
@@ -45,7 +48,7 @@ public class SnakeFrame extends JFrame {
 
         setVisible(true);
 
-        SnakeMotionThread motionThread = new SnakeMotionThread(this);
+        motionThread = new SnakeMotionThread(this);
         motionThread.start();
 
     }
@@ -80,7 +83,7 @@ public class SnakeFrame extends JFrame {
     }
 
     public boolean isGameOver() {
-        return  gameOver.get();
+        return gameOver.get();
     }
 
     public void checkGame() {
@@ -90,7 +93,28 @@ public class SnakeFrame extends JFrame {
         );
     }
 
+    /**
+     * Stop game in case of pause or gam eover
+     *
+     * @return
+     */
     public boolean stopGame() {
         return gameOver.get() || pause.get();
+    }
+
+    /**
+     * Use for game reinitialization after game over
+     */
+    public void reinitialize() {
+        snake.reinitialize(0, 0);
+        pause.set(false);
+        gameOver.set(false);
+        addFood();
+        snakePanel.repaint();
+        infoPanel.repaint();
+        if(!motionThread.isAlive()){
+            motionThread = new SnakeMotionThread(this);
+            motionThread.start();
+        }
     }
 }

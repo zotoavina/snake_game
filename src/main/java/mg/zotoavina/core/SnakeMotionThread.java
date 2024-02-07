@@ -34,5 +34,6 @@ public class SnakeMotionThread extends Thread {
                 e.printStackTrace();
             }
         }
+
     }
 }

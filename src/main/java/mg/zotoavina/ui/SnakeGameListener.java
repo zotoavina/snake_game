@@ -30,6 +30,7 @@ public class SnakeGameListener implements KeyListener {
         if(keyCode == KEY_DOWN_CODE) snake.changeDirection(Direction.DOWN);
         if(keyCode == KEY_RIGHT_CODE) snake.changeDirection(Direction.RIGHT);
         if(keyCode == KEY_LEFT_CODE) snake.changeDirection(Direction.LEFT);
+        if(keyCode == KEY_N_CODE) snakeFrame.reinitialize();
     }
 
     @Override

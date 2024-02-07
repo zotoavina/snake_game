@@ -108,6 +108,14 @@ public class Snake {
                 .anyMatch(part -> part.checkLocation(head.getX(), head.getY()));
     }
 
+    /**
+     * used to check if the snake's head position is out of accepted range
+     * @param minX
+     * @param minY
+     * @param maxX
+     * @param maxY
+     * @return
+     */
     public boolean isOutOfRange(int minX, int minY, int maxX, int maxY) {
         Part head = body.get(0);
         int xHead = head.getX();
@@ -115,4 +123,17 @@ public class Snake {
         return xHead < minX || xHead > maxX || yHead < minY || yHead > maxY;
     }
 
+    /**
+     * Reinitialize the snake state
+     */
+    public void reinitialize(int xPos, int yPos){
+        currentDirection = null;
+        Part head = body.get(0);
+        head.getPosition().x = xPos;
+        head.getPosition().y = yPos;
+        body.clear();
+        body.offer(head);
+    }
+
 }
+
