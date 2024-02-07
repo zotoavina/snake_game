@@ -9,6 +9,7 @@ import mg.zotoavina.core.Snake;
 import javax.swing.*;
 import java.awt.*;
 import java.util.LinkedList;
+import java.util.Objects;
 
 import static mg.zotoavina.config.FrameConfig.FRAME_HEIGHT;
 import static mg.zotoavina.config.FrameConfig.SNAKE_PANEL_WIDTH;
@@ -46,10 +47,11 @@ public class SnakePanel extends JPanel {
             graphics.drawRoundRect(part.getX(), part.getY(), PART_SIZE, PART_SIZE, 4, 4);
     }
 
-    private static void drawHead(Part part, Graphics graphics, int bound) {
+    private static void drawHead(Part part, Graphics graphics) {
+        if(Objects.isNull(part)) return;
         graphics.drawRoundRect(part.getX(), part.getY(), PART_SIZE, PART_SIZE, 4, 4);
-        int x = part.getX() + (bound / 2);
-        int y = part.getY() + (bound / 2);
+        int x = part.getX() + (PART_SIZE / 2);
+        int y = part.getY() + (PART_SIZE / 2);
         graphics.setColor(Color.RED);
         graphics.fillRect(x, y, 2, 2);
     }
@@ -57,7 +59,7 @@ public class SnakePanel extends JPanel {
     private static void drawSnake(Snake snake, Graphics graphics) {
         LinkedList<Part> parts = snake.getSnakeCorpse();
         Part head = parts.poll();
-        drawHead(head, graphics, PART_SIZE);
+        drawHead(head, graphics);
         parts.forEach(p -> drawSnackPart(p, graphics));
     }
 

@@ -6,6 +6,8 @@ import mg.zotoavina.core.Snake;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
+import static mg.zotoavina.config.KeyCodeConst.*;
+
 public class SnakeGameListener implements KeyListener {
 
     private final SnakeFrame snakeFrame;
@@ -24,10 +26,10 @@ public class SnakeGameListener implements KeyListener {
     public void keyPressed(KeyEvent e) {
         int keyCode = e.getKeyCode();
         Snake snake = snakeFrame.getSnake();
-        if(keyCode == 38) snake.changeDirection(Direction.UP);
-        if(keyCode == 40) snake.changeDirection(Direction.DOWN);
-        if(keyCode == 39) snake.changeDirection(Direction.RIGHT);
-        if(keyCode == 37) snake.changeDirection(Direction.LEFT);
+        if(keyCode == KEY_UP_CODE) snake.changeDirection(Direction.UP);
+        if(keyCode == KEY_DOWN_CODE) snake.changeDirection(Direction.DOWN);
+        if(keyCode == KEY_RIGHT_CODE) snake.changeDirection(Direction.RIGHT);
+        if(keyCode == KEY_LEFT_CODE) snake.changeDirection(Direction.LEFT);
     }
 
     @Override
